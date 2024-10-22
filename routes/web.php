@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiteController;
 use App\Http\LocaleMiddleware;
@@ -29,6 +30,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::controller(SettingController::class)->name('settings')->prefix('settings')->group(function() {
         Route::get('/', 'index');
         Route::post('/', 'update');
+    });
+    Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function() {
+        Route::get('/', 'index')->name('index');
+        Route::post('update', 'update')->name('update');
+        Route::post('changepass', 'changePass')->name('changepass');
+        Route::get('delete', 'delete')->name('delete');
     });
 });
 

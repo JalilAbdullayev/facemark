@@ -4,17 +4,14 @@
         <!-- User Profile-->
         <div class="user-profile">
             <div class="user-pro-body">
-                <div>
-                    <img src="{{ asset('back/images/users/2.jpg')}}" alt="user-img" class="img-circle"/>
-                </div>
                 <div class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu"
-                       data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" role="button"
+                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ auth()->user()->name }} <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu animated flipInY">
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item">
+                        <a href="{{ route('admin.profile.index') }}" class="dropdown-item">
                             <i class="ti-user"></i> Profil
                         </a>
                         <!-- text-->
