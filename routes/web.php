@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SiteController;
 use App\Http\LocaleMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,10 @@ Route::group(['prefix' => $locale, function($locale = null) {
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
     Route::get('/', AdminController::class)->name('index');
+    Route::controller(SettingController::class)->name('settings')->prefix('settings')->group(function() {
+        Route::get('/', 'index');
+        Route::post('/', 'update');
+    });
 });
 
 Auth::routes();

@@ -5,7 +5,8 @@
         <div class="user-profile">
             <div class="user-pro-body">
                 <div>
-                    <img src="{{ asset('back/images/users/2.jpg')}}" alt="user-img" class="img-circle"></div>
+                    <img src="{{ asset('back/images/users/2.jpg')}}" alt="user-img" class="img-circle"/>
+                </div>
                 <div class="dropdown">
                     <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu"
                        data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -38,6 +39,15 @@
                         <i class="mdi mdi-home"></i>
                         <span class="hide-menu">
                             Ana Səhifə
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{ route('admin.settings') }}"
+                       aria-expanded="false">
+                        <i class="icons-Gears"></i>
+                        <span class="hide-menu">
+                            Parametrlər
                         </span>
                     </a>
                 </li>

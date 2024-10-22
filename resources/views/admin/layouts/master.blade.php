@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet"/>
     @vite([])
+    @yield('css')
 </head>
 <body class="skin-default-dark fixed-layout">
 <!-- ============================================================== -->
@@ -25,7 +27,7 @@
     <div class="loader">
         <div class="loader__figure"></div>
         <p class="loader__label">
-            Elite admin
+            {{ $settings->title }}
         </p>
     </div>
 </div>
@@ -41,20 +43,15 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <div class="navbar-header">
+            <div class="navbar-header text-center">
                 <a class="navbar-brand" href="{{ route('admin.index') }}">
                     <!-- Logo icon -->
                     <b>
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Light Logo icon -->
-                        <img src="{{ asset('back/images/logo-light-icon.png')}}" alt="homepage" class="light-logo"/>
+                        {{ $settings->title }}
                     </b>
                     <!--End Logo icon -->
-                    <!-- Logo text -->
-                    <span>
-                        <!-- Light Logo text -->
-                        <img src="{{ asset('back/images/logo-light-text.png')}}" class="light-logo" alt="homepage"/>
-                    </span>
                 </a>
             </div>
             <!-- ============================================================== -->
@@ -113,9 +110,8 @@
     <!-- footer -->
     <!-- ============================================================== -->
     <footer class="footer">
-        © {{ date('Y') }} Eliteadmin by themedesigner.in
-        <a href="https://www.wrappixel.com/">
-            WrapPixel
+        © {{ date('Y') }} <a href="{{ route('home') }}">
+            {{ $settings->title }}
         </a>
     </footer>
     <!-- ============================================================== -->
@@ -142,6 +138,34 @@
 <script src="{{ asset('back/node_modules/sparkline/jquery.sparkline.min.js')}}"></script>
 <!--Custom JavaScript -->
 <script src="{{ asset('back/js/custom.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const successAlert = message => {
+        Swal.fire({
+            icon: 'success',
+            timer: 1500,
+            background: '#303641',
+            timerProgressBar: true,
+            title: message,
+        })
+    }
+
+    const errorAlert = message => {
+        Swal.fire({
+            icon: 'error',
+            timer: 1500,
+            background: '#303641',
+            timerProgressBar: true,
+            title: message,
+        })
+    }
+
+    @if(session('success'))
+    successAlert('{{ session('success') }}');
+    @elseif(session('error'))
+    errorAlert('{{ session('error') }}')
+    @endif
+</script>
 @yield('js')
 </body>
 </html>
